@@ -17,6 +17,6 @@ class MaterialToGroup extends Model
 
     public function materialGroups(): BelongsToMany
     {
-        return $this->belongsToMany(MaterialGroup::class);
+        return $this->belongsToMany(MaterialGroup::class, 'material_material_group', 'id');
     }
 }

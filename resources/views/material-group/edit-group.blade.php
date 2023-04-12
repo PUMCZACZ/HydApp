@@ -51,7 +51,7 @@
             <div class="flex items-center justify-between">
                 <button>Dodaj Do Grupy</button>
             </div>
-            @dd($materialsToGroups)
+            @dd($materials)
         </form>
     </div>
 </x-app-layout>

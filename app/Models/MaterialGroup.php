@@ -13,7 +13,7 @@ class MaterialGroup extends Model
 
     public function materials(): BelongsToMany
     {
-        return $this->belongsToMany(Material::class)->withPivot(['quantity']);
+        return $this->belongsToMany(Material::class);
     }
 
     public function materialToGroups(): BelongsToMany
