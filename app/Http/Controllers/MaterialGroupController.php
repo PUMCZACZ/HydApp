@@ -78,7 +78,7 @@ class MaterialGroupController extends Controller
     {
         return view('material-group.edit-group', [
             'materialGroups'    => $materialGroup,
-            'materials' => MaterialToGroup::all(),
+            'materials' => MaterialToGroup::with('material', 'group')->get()
         ]);
     }
 }
