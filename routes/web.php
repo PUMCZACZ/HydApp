@@ -46,20 +46,38 @@ Route::middleware('auth')->group(function () {
             Route::delete('/{material}', [MaterialController::class, 'destroy'])->name('destroy');
         });
 
-    Route::prefix('/material-group')
+    Route::prefix('/material-groups')
         ->name('material-groups.')
         ->group(function () {
             Route::get('/', [MaterialGroupController::class, 'index'])->name('index');
             Route::get('/create', [MaterialGroupController::class, 'create'])->name('create');
             Route::post('/', [MaterialGroupController::class, 'store'])->name('store');
-            Route::get('/{material_group}', [MaterialGroupController::class, 'edit'])->name('edit');
+            Route::get('/{material_group}/edit', [MaterialGroupController::class, 'edit'])->name('edit');
             Route::post('/{material_group}', [MaterialGroupController::class, 'update'])->name('update');
             Route::delete('/{material_group}', [MaterialGroupController::class, 'destroy'])->name('destroy');
-            Route::get('/show/{material_group}', [MaterialGroupController::class, 'show'])->name('show');
-            Route::get('/show/create/{material_group}', [MaterialGroupController::class, 'createMaterialToGroup'])->name('createMaterialToGroup');
-            Route::get('/show/edit/{material_group}', [MaterialGroupController::class, 'editMaterialToGroup'])->name('editMaterialToGroup');
-            Route::post('/show/create/', [MaterialGroupController::class, 'storeMaterialToGroup'])->name('storeMaterialToGroup');
+            Route::get('/{material_group}', [MaterialGroupController::class, 'show'])->name('show');
+
+            Route::prefix('/{material_group}/materials')
+                ->as('materials.')
+                ->group(function () {
+                    Route::get('/create', [MaterialGroupController::class, 'createMaterialToGroup'])
+                        ->name('create');
+                    Route::get('/{material}/edit', [MaterialGroupController::class, 'editMaterialToGroup'])
+                        ->name('edit');
+                    Route::post('/', [MaterialGroupController::class, 'storeMaterialToGroup'])
+                        ->name('store');
+                });
         });
+
 });
 
 require __DIR__ . '/auth.php';
+
+//Route::get('/posts'); // index
+//Route::get('/posts/create'); // formularz tworzenia
+//Route::post('/posts'); // dodaj nowy
+//Route::get('/posts/{post}'); // wyświetl jeden
+//Route::get('/posts/{post}/edit'); // edytuj
+//Route::patch('/posts/{post}'); // zaktualizuj
+//Route::delete('/posts/{post}'); // usuń element
+
