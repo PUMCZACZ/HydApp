@@ -2,7 +2,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class MaterialToGroup extends Model
 {
@@ -10,13 +10,14 @@ class MaterialToGroup extends Model
 
     protected $table = 'material_material_group';
 
-    public function materials(): BelongsToMany
+
+    public function material(): BelongsTo
     {
-        return $this->belongsToMany(Material::class);
+        return $this->belongsTo(Material::class);
     }
 
-    public function materialGroups(): BelongsToMany
+    public function group(): BelongsTo
     {
-        return $this->belongsToMany(MaterialGroup::class, 'material_material_group', 'id');
+        return $this->belongsTo(MaterialGroup::class);
     }
 }

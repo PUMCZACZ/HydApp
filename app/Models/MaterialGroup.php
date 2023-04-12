@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class MaterialGroup extends Model
 {
@@ -16,8 +17,8 @@ class MaterialGroup extends Model
         return $this->belongsToMany(Material::class);
     }
 
-    public function materialToGroups(): BelongsToMany
+    public function materialToGroups(): HasMany
     {
-        return $this->belongsToMany(MaterialToGroup::class);
+        return $this->hasMany(MaterialToGroup::class);
     }
 }
