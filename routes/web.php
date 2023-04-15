@@ -62,13 +62,16 @@ Route::middleware('auth')->group(function () {
                 ->group(function () {
                     Route::get('/create', [MaterialGroupController::class, 'createMaterialToGroup'])
                         ->name('create');
-                    Route::get('/{material}/edit', [MaterialGroupController::class, 'editMaterialToGroup'])
-                        ->name('edit');
                     Route::post('/', [MaterialGroupController::class, 'storeMaterialToGroup'])
                         ->name('store');
+                    Route::get('/{material}/edit', [MaterialGroupController::class, 'editMaterialToGroup'])
+                        ->name('edit');
+                    Route::post('/{material}', [MaterialGroupController::class, 'updateMaterialToGroup'])
+                    ->name('update');
+                    Route::delete('/{material}', [MaterialGroupController::class, 'deleteMaterialToGroup'])
+                        ->name('destroy');
                 });
         });
-
 });
 
 require __DIR__ . '/auth.php';

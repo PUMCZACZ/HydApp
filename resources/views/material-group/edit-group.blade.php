@@ -16,43 +16,39 @@
     @csrf
     <div class="w-full max-w-xs">
         <form method="POST"
-              action="{{ route('material-groups.store') }}"
+              action="{{ route('material-groups.materials.update', [$materialGroup->id ,$material->id]) }}"
               class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
             @csrf
             <div class="mb-4">
                 <label class="block text-gray-700 text-lg font-bold mb-2" for="name">
-                    Nazwa Grupy Materiałów: {{ $materialGroups->group_name }}
+                    Nazwa Grupy Materiałów: {{ $materialGroup->group_name }}
                 </label>
+                <input type="hidden" name="material_group_id" id="material_group_id" value="{{ $materials[0]->material_group_id }}">
             </div>
 
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="material_id">
                     Materiał
                 </label>
-                <select name="material_id"
-                        id="material_id"
-                >
-                    @foreach($materialGroups->materials as $material)
-                        <option value="{{ $material->id }}" {{ $material->pivot->material_id === $material->id  ? 'selected' : '' }}>
-                            {{ $material->material_name }}
-                        </option>
-                    @endforeach
-                </select>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="material_name" name="material_name" type="text" disabled value="{{  $material->material_name }}">
+                <input type="hidden" name="material_id" id="material_id" value="{{ $materials[0]->material_id }}">
             </div>
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="quantity">
                     Ilość Materiału
                 </label>
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="quantity" name="quantity" type="text" value="{{ old('quantity', $materialGroups->quantity) }}">
+                    id="quantity" name="quantity" type="number" value="{{ old('quantity', $materials[0]->quantity ) }}">
             </div>
             <div class="flex items-center justify-between">
-                <button>Dodaj Do Grupy</button>
+                <button>Zaktualizuj</button>
             </div>
-            @dd($materials)
         </form>
+        @dd($materials)
     </div>
 </x-app-layout>
 </body>

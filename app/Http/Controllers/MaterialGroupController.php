@@ -60,27 +60,33 @@ class MaterialGroupController extends Controller
     {
         return view('material-group.create-group', [
             'materials' => Material::all(),
-            'group'     => $materialGroup,
+            'materialGroup'     => $materialGroup,
         ]);
     }
 
     public function storeMaterialToGroup(MaterialToGroupRequest $request)
     {
-        /**
-         * @var MaterialToGroup $materialToGroup
-         */
         MaterialToGroup::create($request->toData());
 
-        return redirect(route('material-groups.show'), $request->input('material_group_id'));
+        return redirect(route('material-groups.show', $request->input('material_group_id')));
     }
 
     public function editMaterialToGroup(MaterialGroup $materialGroup, Material $material)
     {
         $materials = MaterialToGroup::query()
             ->where('material_id', $material->id)
-            ->with('group')
+            ->with(['material', 'group'])
             ->get();
 
         return view('material-group.edit-group', compact('materialGroup', 'material', 'materials'));
+    }
+
+    public function updateMaterialToGroup(MaterialToGroup $materialToGroup, MaterialToGroupRequest $request)
+    {
+        $materialToGroup->update($request->toData());
+
+        var_dump($request->all());
+        var_dump($materialToGroup->update($request->toData()));
+//        return redirect(route('material-groups.show', $request->input('material_group_id')));
     }
 }

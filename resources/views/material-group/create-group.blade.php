@@ -16,18 +16,17 @@
     @csrf
     <div class="w-full max-w-xs">
         <form method="POST"
-              action="{{ route('material-groups.storeMaterialToGroup') }}"
+              action="{{ route('material-groups.materials.store', $materialGroup->id) }}"
               class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
             @csrf
             <div class="mb-4">
                 <label class="block text-gray-700 text-lg font-bold mb-2" for="name">
-                    Nazwa Grupy Materiałów: {{ $group->group_name }}
+                    Nazwa Grupy Materiałów: {{ $materialGroup->group_name }}
                 </label>
             </div>
 
-            <input type="hidden" value="{{ $group->id }}" id="material_group_id" name="material_group_id">
-
+            <input type="hidden" value="{{ $materialGroup->id }}" id="material_group_id" name="material_group_id">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                     Materiał
