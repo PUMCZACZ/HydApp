@@ -63,9 +63,6 @@
                 <button>Utwórz</button>
             </div>
         </form>
-        <div>
-            {{ var_dump($errors) }}
-        </div>
     </div>
 </x-app-layout>
 </body>

@@ -13,7 +13,6 @@
 </head>
 <body>
 <x-app-layout>
-    @csrf
     <div class="w-full max-w-xs">
         <form method="POST"
               action="{{ route('material-groups.materials.update', [$materialGroup->id ,$material->id]) }}"
@@ -21,9 +20,10 @@
         >
             @csrf
             <div class="mb-4">
-                <label class="block text-gray-700 text-lg font-bold mb-2" for="name">
+                <label class="block text-gray-700 text-lg font-bold mb-2">
                     Nazwa Grupy Materiałów: {{ $materialGroup->group_name }}
                 </label>
+                <input type="hidden" name="id" id="id" value="{{ $materials[0]->id }}">
                 <input type="hidden" name="material_group_id" id="material_group_id" value="{{ $materials[0]->material_group_id }}">
             </div>
 
@@ -33,7 +33,7 @@
                 </label>
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="material_name" name="material_name" type="text" disabled value="{{  $material->material_name }}">
+                    type="text" disabled value="{{  $materials[0]->material->material_name }}">
                 <input type="hidden" name="material_id" id="material_id" value="{{ $materials[0]->material_id }}">
             </div>
             <div class="mb-4">
@@ -48,7 +48,9 @@
                 <button>Zaktualizuj</button>
             </div>
         </form>
-        @dd($materials)
+        <div>
+            @dd($materials)
+        </div>
     </div>
 </x-app-layout>
 </body>

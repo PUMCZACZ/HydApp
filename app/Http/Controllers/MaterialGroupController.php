@@ -75,18 +75,17 @@ class MaterialGroupController extends Controller
     {
         $materials = MaterialToGroup::query()
             ->where('material_id', $material->id)
-            ->with(['material', 'group'])
+            ->with(['material'])
             ->get();
 
         return view('material-group.edit-group', compact('materialGroup', 'material', 'materials'));
     }
 
-    public function updateMaterialToGroup(MaterialToGroup $materialToGroup, MaterialToGroupRequest $request)
-    {
-        $materialToGroup->update($request->toData());
 
-        var_dump($request->all());
-        var_dump($materialToGroup->update($request->toData()));
-//        return redirect(route('material-groups.show', $request->input('material_group_id')));
+    public function updateMaterialToGroup(MaterialToGroup $group, MaterialToGroupRequest $request)
+    {
+        MaterialToGroup::query()
+            ->where('id', $group->id )
+            ->update($request->validated());
     }
 }

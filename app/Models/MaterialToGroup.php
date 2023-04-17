@@ -27,6 +27,16 @@ class MaterialToGroup extends Model
 
     public function group(): BelongsTo
     {
-        return $this->belongsTo(MaterialGroup::class);
+        return $this->belongsTo(MaterialGroup::class, 'material_group_id', 'id');
+    }
+
+    public function orderGroup(): BelongsTo
+    {
+        return $this->belongsTo(OrderMaterialGroup::class, 'material_group_id');
+    }
+
+    public function orderMaterial(): BelongsTo
+    {
+        return $this->belongsTo(OrderMaterialGroup::class, 'material_id');
     }
 }

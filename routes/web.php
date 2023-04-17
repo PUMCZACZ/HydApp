@@ -4,6 +4,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MaterialGroupController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,7 +15,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'web'])->group(function () {
 
     Route::prefix('/profile')
         ->name('profile.')
@@ -71,6 +72,16 @@ Route::middleware('auth')->group(function () {
                     Route::delete('/{material}', [MaterialGroupController::class, 'deleteMaterialToGroup'])
                         ->name('destroy');
                 });
+        });
+    Route::prefix('/orders')
+        ->name('orders.')
+        ->group(function (){
+            Route::get('/', [OrderController::class, 'index'])->name('index');
+            Route::get('/create', [OrderController::class, 'create'])->name('create');
+            Route::post('/', [OrderController::class, 'store'])->name('store');
+            Route::get('/{order}/edit', [OrderController::class, 'edit'])->name('edit');
+            Route::post('/{order}', [OrderController::class, 'update'])->name('update');
+            Route::post('/{order}', [OrderController::class, 'destroy'])->name('destroy');
         });
 });
 
