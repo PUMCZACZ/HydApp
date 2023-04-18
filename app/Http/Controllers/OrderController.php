@@ -24,7 +24,6 @@ class OrderController extends Controller
             'clients' => Client::select(['id','name', 'lastname'])->get(),
             'materialGroups' => MaterialToGroup::with(['material', 'group'])->get(),
             'groups' => MaterialGroup::all(),
-
         ]);
     }
 

@@ -28,4 +28,9 @@ class Order extends Model
     {
         return $this->hasMany(OrderMaterialGroup::class, 'order_id');
     }
+
+    public function materialGroup(): BelongsTo
+    {
+        return $this->belongsTo(MaterialToGroup::class, 'material_group_id');
+    }
 }

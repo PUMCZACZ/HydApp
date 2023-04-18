@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property int id
  * @property string group_name
+ * @property int material_group_id
  * @property Carbon created_at
  * @property Carbon updated_at
  */
