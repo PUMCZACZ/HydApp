@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('material_material_group_order', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
-            $table->foreignId('material_group_id')->constrained()->onDelete('cascade');
             $table->foreignId('material_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

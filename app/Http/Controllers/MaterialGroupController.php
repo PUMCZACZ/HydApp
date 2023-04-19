@@ -59,7 +59,7 @@ class MaterialGroupController extends Controller
     public function createMaterialToGroup(MaterialGroup $materialGroup)
     {
         return view('material-group.create-group', [
-            'materials' => Material::all(),
+            'materials'         => Material::all(),
             'materialGroup'     => $materialGroup,
         ]);
     }
@@ -81,11 +81,10 @@ class MaterialGroupController extends Controller
         return view('material-group.edit-group', compact('materialGroup', 'material', 'materials'));
     }
 
-
     public function updateMaterialToGroup(MaterialToGroup $group, MaterialToGroupRequest $request)
     {
         MaterialToGroup::query()
-            ->where('id', $group->id )
+            ->where('id', $group->id)
             ->update($request->validated());
     }
 }

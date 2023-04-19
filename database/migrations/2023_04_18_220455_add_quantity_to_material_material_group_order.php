@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('material_material_group_order', function (Blueprint $table) {
-            $table->dropColumn('material_group_id');
             $table->integer('quantity');
         });
     }

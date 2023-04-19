@@ -3,8 +3,8 @@
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MaterialGroupController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -68,14 +68,14 @@ Route::middleware(['auth', 'web'])->group(function () {
                     Route::get('/{material}/edit', [MaterialGroupController::class, 'editMaterialToGroup'])
                         ->name('edit');
                     Route::post('/{material}', [MaterialGroupController::class, 'updateMaterialToGroup'])
-                    ->name('update');
+                        ->name('update');
                     Route::delete('/{material}', [MaterialGroupController::class, 'deleteMaterialToGroup'])
                         ->name('destroy');
                 });
         });
     Route::prefix('/orders')
         ->name('orders.')
-        ->group(function (){
+        ->group(function () {
             Route::get('/', [OrderController::class, 'index'])->name('index');
             Route::get('/create', [OrderController::class, 'create'])->name('create');
             Route::post('/', [OrderController::class, 'store'])->name('store');
@@ -94,4 +94,3 @@ require __DIR__ . '/auth.php';
 //Route::get('/posts/{post}/edit'); // edytuj
 //Route::patch('/posts/{post}'); // zaktualizuj
 //Route::delete('/posts/{post}'); // usuń element
-

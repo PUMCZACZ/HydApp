@@ -20,7 +20,6 @@ class MaterialToGroup extends Model
 
     protected $table = 'material_material_group';
 
-
     public function material(): BelongsTo
     {
         return $this->belongsTo(Material::class);

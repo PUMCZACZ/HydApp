@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,9 +22,9 @@ class OrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'client_id' => ['required'],
-            'order_name' => ['required', 'string', 'min:1'],
-            'material_group_id' => ['required']
+            'client_id'         => ['required'],
+            'order_name'        => ['required', 'string', 'min:1'],
+            'material_group_id' => ['required'],
         ];
     }
 }

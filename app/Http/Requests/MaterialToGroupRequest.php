@@ -24,7 +24,7 @@ class MaterialToGroupRequest extends FormRequest
             'quantity'          => $this->input('quantity'),
             'material_id'       => $this->input('material_id'),
             'material_group_id' => $this->input('material_group_id'),
-            'id' => $this->input('id'),
+            'id'                => $this->input('id'),
         ];
     }
 }

@@ -42,8 +42,16 @@
                 </select>
             </div>
 
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="material_group_id">Nazwa Zamówienia</label>
+                <input name="order_name" id="order_name" type="text">
+            </div>
+
             <div class="flex items-center justify-between">
                 <button>Utwórz</button>
+            </div>
+            <div>
+                {{ var_dump($errors) }}
             </div>
         </form>
     </div>
