@@ -5,6 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * @property int id
@@ -30,5 +31,10 @@ class Order extends Model
     public function materialGroup(): BelongsTo
     {
         return $this->belongsTo(MaterialToGroup::class, 'material_group_id');
+    }
+
+    public function materials(): HasManyThrough
+    {
+        return $this->hasManyThrough(Material::class, OrderMaterialGroup::class);
     }
 }

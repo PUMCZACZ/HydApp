@@ -50,9 +50,6 @@
             <div class="flex items-center justify-between">
                 <button>Utwórz</button>
             </div>
-            <div>
-                {{ var_dump($errors) }}
-            </div>
         </form>
     </div>
 </x-app-layout>

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
 use App\Models\Client;
+use App\Models\Material;
 use App\Models\MaterialGroup;
 use App\Models\MaterialToGroup;
 use App\Models\Order;
@@ -54,6 +55,11 @@ class OrderController extends Controller
     {
         return view('order.edit',[
             'order' => $order,
+            'orders' => Order::query()
+                ->where('id', $order->id)
+                ->with(['client', 'orderMaterialGroup', 'materialGroup'])
+                ->get(),
+            'materials' => Material::all(),
         ]);
     }
 
