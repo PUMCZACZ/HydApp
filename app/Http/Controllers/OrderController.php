@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderAddGroupRequest;
 use App\Http\Requests\OrderRequest;
 use App\Models\Client;
 use App\Models\Material;
@@ -29,7 +30,10 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request)
     {
-        Order::create($request->validated());
+        Order::create([
+            'client_id'  => $request->input('client_id'),
+            'order_name' => $request->input('order_name'),
+        ]);
 
         $materialGroup = MaterialToGroup::query()
             ->select('material_id', 'quantity')
@@ -44,17 +48,19 @@ class OrderController extends Controller
 
         foreach ($materialGroup as $material) {
             OrderMaterialGroup::create([
-                'order_id'    => $order[0]->id,
-                'material_id' => $material->material_id,
-                'quantity'    => $material->quantity,
+                'order_id'          => $order[0]->id,
+                'material_id'       => $material->material_id,
+                'quantity'          => $material->quantity,
+                'material_group_id' => $request->input('material_group_id'),
             ]);
         }
+        return redirect(route('order.index'));
     }
 
     public function edit(Order $order)
     {
-        return view('order.edit',[
-            'order' => $order,
+        return view('order.edit', [
+            'order'  => $order,
             'orders' => Order::query()
                 ->where('id', $order->id)
                 ->with(['client', 'orderMaterialGroup', 'materialGroup'])
@@ -71,5 +77,31 @@ class OrderController extends Controller
     public function destroy()
     {
 
+    }
+
+    public function createGroup(Order $order)
+    {
+        return view('order.addGroup', [
+            'order' => $order,
+            'materialGroups' => MaterialGroup::all()
+        ]);
+    }
+
+    public function storeGroup(OrderAddGroupRequest $request, Order $order)
+    {
+        $materialGroup = MaterialToGroup::query()
+            ->where('material_group_id', $request->input('material_group_id'))
+            ->get();
+
+        foreach ($materialGroup as $material)
+        {
+            OrderMaterialGroup::create([
+                'order_id' => $order->id,
+                'material_group_id' => $material->material_group_id,
+                'material_id' => $material->material_id,
+                'quantity' => $material->quantity,
+            ]);
+        }
+        return redirect(route('orders.edit', $order->id));
     }
 }

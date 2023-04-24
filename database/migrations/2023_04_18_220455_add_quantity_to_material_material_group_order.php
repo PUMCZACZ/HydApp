@@ -22,7 +22,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('material_material_group_order', function (Blueprint $table) {
-            $table->foreignId('material_group_id')->constrained()->onDelete('cascade');
             $table->dropColumn('quantity');
         });
     }

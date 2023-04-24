@@ -16,7 +16,7 @@ class MaterialFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'          => fake()->sentence,
+            'material_name'          => fake()->sentence,
             'material_type' => fake()->sentence,
         ];
     }

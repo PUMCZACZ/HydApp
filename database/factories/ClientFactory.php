@@ -1,12 +1,13 @@
 <?php
+
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\MaterialGroup>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Client>
  */
-class MaterialGroupFactory extends Factory
+class ClientFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,7 +17,9 @@ class MaterialGroupFactory extends Factory
     public function definition(): array
     {
         return [
-            'group_name' => fake()->company,
+            'name' => fake()->name(),
+            'lastname' => fake()->lastName(),
+            'phone_number' => fake()->phoneNumber(),
         ];
     }
 }

@@ -31,7 +31,7 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::get('/', [ClientController::class, 'index'])->name('index');
             Route::get('/create', [ClientController::class, 'create'])->name('create');
             Route::post('/', [ClientController::class, 'store'])->name('store');
-            Route::get('/{client}', [ClientController::class, 'edit'])->name('edit');
+            Route::get('/{client}/edit', [ClientController::class, 'edit'])->name('edit');
             Route::post('/{client}', [ClientController::class, 'update'])->name('update');
             Route::delete('/{client}', [ClientController::class, 'destroy'])->name('destroy');
         });
@@ -42,7 +42,7 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::get('/', [MaterialController::class, 'index'])->name('index');
             Route::get('/create', [MaterialController::class, 'create'])->name('create');
             Route::post('/', [MaterialController::class, 'store'])->name('store');
-            Route::get('/{material}', [MaterialController::class, 'edit'])->name('edit');
+            Route::get('/{material}/edit', [MaterialController::class, 'edit'])->name('edit');
             Route::post('/{material}', [MaterialController::class, 'update'])->name('update');
             Route::delete('/{material}', [MaterialController::class, 'destroy'])->name('destroy');
         });
@@ -59,7 +59,7 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::get('/{material_group}', [MaterialGroupController::class, 'show'])->name('show');
 
             Route::prefix('/{material_group}/materials')
-                ->as('materials.')
+                ->name('materials.')
                 ->group(function () {
                     Route::get('/create', [MaterialGroupController::class, 'createMaterialToGroup'])
                         ->name('create');
@@ -81,7 +81,14 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::post('/', [OrderController::class, 'store'])->name('store');
             Route::get('/{order}/edit', [OrderController::class, 'edit'])->name('edit');
             Route::post('/{order}', [OrderController::class, 'update'])->name('update');
-            Route::post('/{order}', [OrderController::class, 'destroy'])->name('destroy');
+            Route::delete('/{order}', [OrderController::class, 'destroy'])->name('destroy');
+
+            Route::prefix('/{order}/group')
+                ->name('groups.')
+                ->group(function () {
+                    Route::get('/create', [OrderController::class, 'createGroup'])->name('create');
+                    Route::post('/', [OrderController::class, 'storeGroup'])->name('store');
+                });
         });
 });
 

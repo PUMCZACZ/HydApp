@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 /**
  * @property int id
  * @property int order_id
+ * @property int material_group_id
  * @property int material_id
  * @property int quantity
  * @property Carbon created_at
@@ -20,8 +21,6 @@ class OrderMaterialGroup extends Model
     protected $guarded = [];
 
     protected $table = 'material_material_group_order';
-
-    use HasFactory;
 
     public function order(): BelongsTo
     {
