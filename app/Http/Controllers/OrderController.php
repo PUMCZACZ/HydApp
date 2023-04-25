@@ -54,6 +54,7 @@ class OrderController extends Controller
                 'material_group_id' => $request->input('material_group_id'),
             ]);
         }
+
         return redirect(route('order.index'));
     }
 
@@ -69,9 +70,9 @@ class OrderController extends Controller
         ]);
     }
 
-    public function update()
+    public function update(OrderRequest $request)
     {
-
+       var_dump($request->collect());
     }
 
     public function destroy()
@@ -82,8 +83,8 @@ class OrderController extends Controller
     public function createGroup(Order $order)
     {
         return view('order.addGroup', [
-            'order' => $order,
-            'materialGroups' => MaterialGroup::all()
+            'order'          => $order,
+            'materialGroups' => MaterialGroup::all(),
         ]);
     }
 
@@ -93,15 +94,15 @@ class OrderController extends Controller
             ->where('material_group_id', $request->input('material_group_id'))
             ->get();
 
-        foreach ($materialGroup as $material)
-        {
+        foreach ($materialGroup as $material) {
             OrderMaterialGroup::create([
-                'order_id' => $order->id,
+                'order_id'          => $order->id,
                 'material_group_id' => $material->material_group_id,
-                'material_id' => $material->material_id,
-                'quantity' => $material->quantity,
+                'material_id'       => $material->material_id,
+                'quantity'          => $material->quantity,
             ]);
         }
+
         return redirect(route('orders.edit', $order->id));
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -15,7 +14,7 @@ class OrderAddGroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'material_group_id' => ['required']
+            'material_group_id' => ['required'],
         ];
     }
 }

@@ -17,7 +17,7 @@ class MaterialFactory extends Factory
     {
         return [
             'material_name'          => fake()->sentence,
-            'material_type' => fake()->sentence,
+            'material_type'          => fake()->sentence,
         ];
     }
 }

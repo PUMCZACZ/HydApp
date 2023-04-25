@@ -23,9 +23,21 @@ class MaterialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'material_name' => ['required', 'string', 'max:255', 'min:1'],
-            'material_type' => ['required', 'string', 'max:255', 'min:1'],
+            'material_name'  => ['required', 'string', 'max:255', 'min:1'],
+            'purchase_price' => ['required', 'numeric', 'min:0.01'],
+            'margin'         => ['required', 'numeric', 'min:0.01'],
+            'unit_si'        => ['required'],
         ];
+    }
+
+    private function refactorMargin(): float
+    {
+        return $this->input('margin') / 100;
+    }
+
+    private function refactorPrice(): float
+    {
+        return str_replace('/,/', '.', $this->input('purchase_price'));
     }
 
     public function group(): ?MaterialGroup
@@ -36,8 +48,10 @@ class MaterialRequest extends FormRequest
     public function toData(): array
     {
         return [
-            'material_name' => $this->input('material_name'),
-            'material_type' => $this->input('material_type'),
+            'material_name'  => $this->input('material_name'),
+            'purchase_price' => $this->refactorPrice(),
+            'margin'         => $this->refactorMargin(),
+            'unit_si'        => $this->input('unit_si'),
         ];
     }
 }

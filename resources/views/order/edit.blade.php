@@ -64,11 +64,13 @@
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                         @foreach($materials as $material)
                                             @if($group->material_id === $material->id)
-                                                <input id="quantity" name="quantity" value="{{ $group->quantity }}">
+                                                {{ $group->quantity }}
                                             @endif
                                         @endforeach
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Pompa Ciepła</td>
+                                    <td>Edytuj</td>
+                                    <td>Usuń</td>
                                 </tr>
                             @endforeach
                         @endforeach

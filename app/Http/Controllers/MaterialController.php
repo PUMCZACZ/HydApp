@@ -32,6 +32,7 @@ class MaterialController extends Controller
         if ($request->group() !== null) {
             $material->materialGroups()->attach($request->input('group_id'));
         }
+        $material->recalculatePrices();
 
         return redirect(route('materials.index'));
     }
@@ -46,6 +47,7 @@ class MaterialController extends Controller
     public function update(Material $material, MaterialRequest $request)
     {
         $material->update($request->toData());
+        $material->recalculatePrices();
 
         return redirect(route('materials.index'));
     }

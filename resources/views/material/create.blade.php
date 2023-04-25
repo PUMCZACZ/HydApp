@@ -20,7 +20,7 @@
               class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
             @csrf
-            <section>
+            <section class="mb-4">
                 <select name="group_id">
                     <option value="" selected>
                         Brak Grupy
@@ -32,6 +32,7 @@
                     @endforeach
                 </select>
             </section>
+
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                     Nazwa Materiału
@@ -45,21 +46,70 @@
                     @enderror
                 </div>
             </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="material_type">
-                    Typ Materiału
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="purchase_price">
+                    Cena Zakupu
                 </label>
                 <input
                     class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="material_type" name="material_type" type="text" value="{{ old('material_type') }}">
+                    id="purchase_price" name="purchase_price" type="number" step="0.01" min="0" value="{{ old('purchase_price') }}">
                 <div>
-                    @error('material_type')
-                        <p class="text-sm text-red-500">{{ $message }}</p>
+                    @error('purchase_price')
+                    <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
 
-            <div class="flex items-center justify-between">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="margin">
+                    Marża
+                </label>
+                <input
+                    class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    id="margin" name="margin" type="number" value="{{ old('margin') }}">
+                <div>
+                    @error('margin')
+                    <p class="text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="purchase_price">
+                    Kod Materiału
+                </label>
+                <input
+                    class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    id="material_code" name="material_code" type="text" value="{{ old('material_code') }}">
+                <div>
+                    @error('material_code')
+                    <p class="text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="purchase_price">
+                    Jednostka
+                </label>
+
+                <select name="unit_si"
+                        id="unit_si"
+                        class="mb-4"
+                >
+                @foreach(\App\Enums\UnitSiEnum::cases() as $unit)
+                    <option value="{{ $unit->value }}">{{ $unit->translate() }}</option>
+                @endforeach
+                </select>
+                <div>
+                    @error('unit_si')
+                    <p class="text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between mt-2">
                 <button>Utwórz</button>
             </div>
         </form>

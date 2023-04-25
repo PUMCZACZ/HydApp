@@ -91,7 +91,6 @@ Route::middleware(['auth', 'web'])->group(function () {
                 });
         });
 });
-
 require __DIR__ . '/auth.php';
 
 //Route::get('/posts'); // index
