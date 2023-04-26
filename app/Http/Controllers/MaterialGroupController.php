@@ -74,6 +74,7 @@ class MaterialGroupController extends Controller
 
     public function editMaterialToGroup(MaterialGroup $materialGroup, Material $material, MaterialsInGroupsRepository $repository)
     {
+        // TODO - wykorzystać repozytorium
         $materialToGroup = MaterialToGroup::query()
             ->where('material_id', $material->id)
             ->with(['material'])
