@@ -12,13 +12,6 @@ use App\Models\OrderPosition;
 
 class OrderController extends Controller
 {
-    private OrderPositionsContoller $orderGroupContoller;
-
-    public function __construct()
-    {
-        $this->orderGroupContoller = new OrderPositionsContoller();
-    }
-
     public function index(Order $order)
     {
         return view('order.index', [
@@ -71,7 +64,7 @@ class OrderController extends Controller
             'order'  => $order,
             'orders' => Order::query()
                 ->where('id', $order->id)
-                ->with(['client', 'orderMaterialGroup', 'materialGroup'])
+                ->with(['client', 'positions', 'materialGroup'])
                 ->get(),
             'materials' => Material::all(),
         ]);
