@@ -30,7 +30,7 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request)
     {
-        Order::create([
+        $order = Order::create([
             'client_id'  => $request->input('client_id'),
             'order_name' => $request->input('order_name'),
         ]);
@@ -40,15 +40,9 @@ class OrderController extends Controller
             ->where('material_group_id', $request->input('material_group_id'))
             ->get();
 
-        $order = Order::query()
-            ->select('id')
-            ->orderBy('id', 'desc')
-            ->limit(1)
-            ->get();
-
         foreach ($materialGroup as $material) {
             OrderPosition::create([
-                'order_id'          => $order[0]->id,
+                'order_id'          => $order->id,
                 'material_id'       => $material->material_id,
                 'quantity'          => $material->quantity,
                 'material_group_id' => $request->input('material_group_id'),

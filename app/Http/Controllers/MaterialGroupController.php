@@ -6,6 +6,7 @@ use App\Http\Requests\MaterialToGroupRequest;
 use App\Models\Material;
 use App\Models\MaterialGroup;
 use App\Models\MaterialToGroup;
+use App\Repositories\MaterialsInGroupsRepository;
 
 class MaterialGroupController extends Controller
 {
@@ -71,7 +72,7 @@ class MaterialGroupController extends Controller
         return redirect(route('material-groups.show', $request->input('material_group_id')));
     }
 
-    public function editMaterialToGroup(MaterialGroup $materialGroup, Material $material)
+    public function editMaterialToGroup(MaterialGroup $materialGroup, Material $material, MaterialsInGroupsRepository $repository)
     {
         $materialToGroup = MaterialToGroup::query()
             ->where('material_id', $material->id)
