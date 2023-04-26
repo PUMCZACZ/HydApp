@@ -12,6 +12,13 @@ use App\Models\OrderMaterialGroup;
 
 class OrderController extends Controller
 {
+    private OrderGroupContoller $orderGroupContoller;
+
+    public function __construct()
+    {
+        $this->orderGroupContoller = new OrderGroupContoller();
+    }
+
     public function index(Order $order)
     {
         return view('order.index', [
@@ -80,29 +87,4 @@ class OrderController extends Controller
 
     }
 
-    public function createGroup(Order $order)
-    {
-        return view('order.addGroup', [
-            'order'          => $order,
-            'materialGroups' => MaterialGroup::all(),
-        ]);
-    }
-
-    public function storeGroup(OrderAddGroupRequest $request, Order $order)
-    {
-        $materialGroup = MaterialToGroup::query()
-            ->where('material_group_id', $request->input('material_group_id'))
-            ->get();
-
-        foreach ($materialGroup as $material) {
-            OrderMaterialGroup::create([
-                'order_id'          => $order->id,
-                'material_group_id' => $material->material_group_id,
-                'material_id'       => $material->material_id,
-                'quantity'          => $material->quantity,
-            ]);
-        }
-
-        return redirect(route('orders.edit', $order->id));
-    }
 }

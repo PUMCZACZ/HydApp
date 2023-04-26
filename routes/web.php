@@ -5,6 +5,7 @@ use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MaterialGroupController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OrderGroupContoller;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -86,8 +87,8 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::prefix('/{order}/group')
                 ->name('groups.')
                 ->group(function () {
-                    Route::get('/create', [OrderController::class, 'createGroup'])->name('create');
-                    Route::post('/', [OrderController::class, 'storeGroup'])->name('store');
+                    Route::get('/create', [OrderGroupContoller::class, 'create'])->name('create');
+                    Route::post('/', [OrderGroupContoller::class, 'store'])->name('store');
                 });
         });
 });
