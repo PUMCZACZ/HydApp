@@ -16,9 +16,24 @@ class OrderRepository
 
         if ($position !== null)
         {
-            //zaktualizuj pozycję
+//            $position->quantity += $quantity;
+//            $position->save();
+
+            $position->update(['quantity' => $position->quantity + $quantity]);
+
+            return $position;
         }
 
-        // inaczej - dodaj nową
+        return $order->positions()->create([
+            'material_id' => $material->id,
+            'quantity' => $quantity,
+            'unit_price' => $material->sale_price,
+        ]);
+
+//        return OrderPosition::create([
+//            'material_id' => $material->id,
+//            'quantity' => $quantity,
+//            'order_id' => $order->id,
+//        ]);
     }
 }

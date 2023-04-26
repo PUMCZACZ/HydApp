@@ -51,7 +51,7 @@
                     </thead>
                     <tbody>
                         @foreach($orders as $order)
-                            @foreach($order->orderMaterialGroup as $group)
+                            @foreach($order->positions as $group)
                                 <tr class="bg-white border-b dark:bg-gray-800">
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
 
