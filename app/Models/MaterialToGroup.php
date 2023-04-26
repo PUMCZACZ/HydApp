@@ -10,7 +10,6 @@ use PHPUnit\Metadata\Group;
 /**
  * @property int           id
  * @property int           material_id
- * @property int           material_group_id
  * @property int           quantity
  * @property Carbon        created_at
  * @property Carbon        updated_at

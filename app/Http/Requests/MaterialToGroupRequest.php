@@ -14,7 +14,7 @@ class MaterialToGroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'quantity' => ['numeric', 'required'],
+            'quantity'    => ['numeric', 'required'],
         ];
     }
 

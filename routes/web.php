@@ -67,13 +67,21 @@ Route::middleware(['auth', 'web'])->group(function () {
                     Route::post('/', [MaterialGroupController::class, 'storeMaterialToGroup'])
                         ->name('store');
                     Route::get('/{material}/edit', [MaterialGroupController::class, 'editMaterialToGroup'])
-                        ->name('edit');
+                        ->name('edit'); // TODO: refactor
                     Route::post('/{material}', [MaterialGroupController::class, 'updateMaterialToGroup'])
-                        ->name('update');
+                        ->name('update'); // TODO: refactor
                     Route::delete('/{material}', [MaterialGroupController::class, 'deleteMaterialToGroup'])
-                        ->name('destroy');
+                        ->name('destroy'); // TODO: refactor
                 });
         });
+
+    Route::prefix('/material_to_groups')
+        ->name('material_to_groups.')
+        ->group(function (){
+            Route::post('{materialToGroup}');
+            Route::get('{materialToGroup}/edit');
+        });
+
     Route::prefix('/orders')
         ->name('orders.')
         ->group(function () {
