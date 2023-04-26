@@ -23,7 +23,7 @@ class Order extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function orderMaterialGroup(): HasMany
+    public function positions(): HasMany
     {
         return $this->hasMany(OrderPosition::class, 'order_id');
     }
