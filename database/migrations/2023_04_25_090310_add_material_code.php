@@ -9,10 +9,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('materials', function (Blueprint $table) {
-            $table->float('purchase_price');
-            $table->float('sale_price')->nullable();
-            $table->float('margin');
+            $table->unsignedFloat('purchase_price');
+            $table->unsignedFloat('sale_price')->nullable();
+            $table->unsignedFloat('margin');
             $table->string('unit_si');
+            $table->string('material_code');
             $table->dropColumn('material_type');
         });
     }
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->dropColumn('sale_price');
             $table->dropColumn('margin');
             $table->dropColumn('unit_si');
+            $table->dropColumn('material_code');
             $table->string('material_type');
         });
     }

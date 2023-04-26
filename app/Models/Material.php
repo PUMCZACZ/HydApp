@@ -34,6 +34,11 @@ class Material extends Model
         return $this->hasMany(MaterialToGroup::class);
     }
 
+    public function displayMargin(): float
+    {
+        return $this->margin * 100;
+    }
+
     public function recalculatePrices(): void
     {
         /** @var MaterialService $materialService */

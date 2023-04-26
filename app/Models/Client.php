@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string name
  * @property string lastname
  * @property string phone_number
+ * @property string email
+ * @property string city
+ * @property string street
+ * @property string post_code
  */
 class Client extends Model
 {

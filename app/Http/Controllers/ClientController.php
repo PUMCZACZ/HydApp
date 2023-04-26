@@ -20,7 +20,7 @@ class ClientController extends Controller
 
     public function store(ClientRequest $request)
     {
-        Client::create($request->toData());
+        Client::create($request->validated());
 
         return redirect(route('clients.index'));
     }
@@ -34,7 +34,7 @@ class ClientController extends Controller
 
     public function update(Client $client, ClientRequest $request)
     {
-        $client->update($request->toData());
+        $client->update($request->validated());
 
         return redirect(route('clients.index'));
     }

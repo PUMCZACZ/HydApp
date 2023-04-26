@@ -11,7 +11,7 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 mt-4">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 mt-4">
             <tr>
                 <th scope="col" class="px-6 py-3">Lp</th>
                 <th scope="col" class="px-6 py-3">Imie</th>
@@ -22,7 +22,7 @@
             </thead>
             <tbody>
             @foreach($clients as $client)
-                <tr class="bg-white border-b dark:bg-gray-800">
+                <tr class="bg-white border-b">
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $client->name }}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $client->lastname }}</td>

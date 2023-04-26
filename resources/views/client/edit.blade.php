@@ -14,7 +14,7 @@
 <body>
 <x-app-layout>
     @csrf
-    <div class="w-full max-w-xs">
+    <div class="grid grid-cols-1 justify-items-center">
         <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
               action="{{ route('clients.update', $client->id) }}"
               method="POST">
@@ -32,7 +32,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="mb-6">
+            <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="lastname">
                     Nazwisko
                 </label>
@@ -45,7 +45,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="mb-2">
+            <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="phone_number">
                     Numer Telefonu
                 </label>
@@ -58,6 +58,67 @@
                         <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                        Email
+                    </label>
+                    <input
+                        class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="email" name="email" type="email"
+                        value="{{ old('email', $client->email) }}">
+                    <div>
+                        @error('email')
+                        <p class="text-sm text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="city">
+                        Miasto
+                    </label>
+                    <input
+                        class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="city" name="city" type="text"
+                        value="{{ old('city', $client->city) }}">
+                    <div>
+                        @error('city')
+                        <p class="text-sm text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="street">
+                        Ulica
+                    </label>
+                    <input
+                        class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="street" name="street" type="text"
+                        value="{{ old('street', $client->street) }}">
+                    <div>
+                        @error('street')
+                        <p class="text-sm text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="post_code">
+                        Kod Pocztowy
+                    </label>
+                    <input
+                        class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        id="post_code" name="post_code" type="text"
+                        value="{{ old('post_code', $client->post_code) }}">
+                    <div>
+                        @error('post_code')
+                        <p class="text-sm text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
             </div>
             <div class="flex items-center justify-between">
                 <button>Zaktualizuj</button>

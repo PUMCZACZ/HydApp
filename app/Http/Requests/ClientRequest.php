@@ -22,18 +22,13 @@ class ClientRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'         => ['required', 'max:255', 'min:1'],
-            'lastname'     => ['required', 'max:255', 'min:1'],
-            'phone_number' => ['required', 'max:255', 'min:1'],
-        ];
-    }
-
-    public function toData(): array
-    {
-        return [
-            'name'         => $this->input('name'),
-            'lastname'     => $this->input('lastname'),
-            'phone_number' => $this->input('phone_number'),
+            'name'         => ['string', 'required', 'max:255', 'min:1'],
+            'lastname'     => ['string', 'required', 'max:255', 'min:1'],
+            'phone_number' => ['string', 'required', 'max:255', 'min:1'],
+            'email' => ['email'],
+            'city' => ['string', 'min:1', 'max:50'],
+            'street' => ['string', 'min:1'],
+            'post_code' => ['string'],
         ];
     }
 }

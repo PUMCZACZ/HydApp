@@ -32,7 +32,7 @@ class MaterialRequest extends FormRequest
 
     private function refactorMargin(): float
     {
-        return $this->input('margin') / 100;
+        return str_replace('/,/', '.', $this->input('purchase_price')) / 100;
     }
 
     private function refactorPrice(): float

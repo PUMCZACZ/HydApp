@@ -28,23 +28,73 @@
                     id="material_name" name="material_name" type="text" value="{{ old('material_name', $material->material_name) }}">
                 <div>
                     @error('material_name')
-                        <p class="text-sm text-red-500">{{ $message }}</p>
+                    <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="lastname">
-                    Typ Materiału
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="purchase_price">
+                    Cena Zakupu
                 </label>
                 <input
                     class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="material_type" name="material_type" type="text" value="{{ old('material_type', $material->material_type) }}">
-            </div>
-            <div>
-                @error('material_type')
+                    id="purchase_price" name="purchase_price" type="number" step="0.01" min="0" value="{{ old('purchase_price', $material->purchase_price) }}">
+                <div>
+                    @error('purchase_price')
                     <p class="text-sm text-red-500">{{ $message }}</p>
-                @enderror
+                    @enderror
+                </div>
             </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="margin">
+                    Marża
+                </label>
+                <input
+                    class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    id="margin" name="margin" type="number" value="{{ old('margin', $material->margin * 100) }}">
+                <div>
+                    @error('margin')
+                    <p class="text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="purchase_price">
+                    Kod Materiału
+                </label>
+                <input
+                    class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    id="material_code" name="material_code" type="text" value="{{ old('material_code', $material->material_code) }}">
+                <div>
+                    @error('material_code')
+                    <p class="text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="purchase_price">
+                    Jednostka
+                </label>
+
+                <select name="unit_si"
+                        id="unit_si"
+                        class="mb-4"
+                >
+                    @foreach(\App\Enums\UnitSiEnum::cases() as $unit)
+                        <option value="{{ $unit->value }}">{{ $unit->translate() }}</option>
+                    @endforeach
+                </select>
+                <div>
+                    @error('unit_si')
+                    <p class="text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
             <div class="flex items-center justify-between">
                 <button>Zaktualizuj</button>
             </div>
