@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Carbon created_at
  * @property Carbon updated_at
  */
-class OrderMaterialGroup extends Model
+class OrderPosition extends Model
 {
     protected $guarded = [];
 

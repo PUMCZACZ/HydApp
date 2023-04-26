@@ -5,14 +5,18 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use PHPUnit\Metadata\Group;
 
 /**
- * @property int id
- * @property int material_id
- * @property int material_group_id
- * @property int quantity
- * @property Carbon created_at
- * @property Carbon updated_at
+ * @property int           id
+ * @property int           material_id
+ * @property int           material_group_id
+ * @property int           quantity
+ * @property Carbon        created_at
+ * @property Carbon        updated_at
+ *
+ * @property-read Material $material
+ * @property-read Group    $group
  */
 class MaterialToGroup extends Model
 {
@@ -37,6 +41,6 @@ class MaterialToGroup extends Model
 
     public function orderMaterial(): BelongsTo
     {
-        return $this->belongsTo(OrderMaterialGroup::class, 'material_id');
+        return $this->belongsTo(OrderPosition::class, 'material_id');
     }
 }

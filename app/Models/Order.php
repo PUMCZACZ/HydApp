@@ -25,7 +25,7 @@ class Order extends Model
 
     public function orderMaterialGroup(): HasMany
     {
-        return $this->hasMany(OrderMaterialGroup::class, 'order_id');
+        return $this->hasMany(OrderPosition::class, 'order_id');
     }
 
     public function materialGroup(): BelongsTo
@@ -35,6 +35,6 @@ class Order extends Model
 
     public function materials(): HasManyThrough
     {
-        return $this->hasManyThrough(Material::class, OrderMaterialGroup::class);
+        return $this->hasManyThrough(Material::class, OrderPosition::class);
     }
 }

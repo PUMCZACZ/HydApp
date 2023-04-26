@@ -6,11 +6,11 @@ use App\Http\Requests\OrderAddGroupRequest;
 use App\Models\MaterialGroup;
 use App\Models\MaterialToGroup;
 use App\Models\Order;
-use App\Models\OrderMaterialGroup;
+use App\Models\OrderPosition;
+use App\Repositories\OrderRepository;
 
-class OrderGroupContoller extends Controller
+class OrderPositionsContoller extends Controller
 {
-
     public function create(Order $order)
     {
         return view('order.addGroup', [
@@ -18,19 +18,16 @@ class OrderGroupContoller extends Controller
             'materialGroups' => MaterialGroup::all(),
         ]);
     }
-    public function store(Order $order, OrderAddGroupRequest $request )
+
+    public function store(Order $order, OrderAddGroupRequest $request, OrderRepository $repository)
     {
-        $materialGroup = MaterialToGroup::query()
+        $materialGroups = MaterialToGroup::query()
             ->where('material_group_id', $request->input('material_group_id'))
             ->get();
 
-        foreach ($materialGroup as $material) {
-            OrderMaterialGroup::create([
-                'order_id' => $order->id,
-                'material_group_id' => $material->material_group_id,
-                'material_id' => $material->material_id,
-                'quantity' => $material->quantity,
-            ]);
+        /** @var MaterialToGroup $materialGroup */
+        foreach ($materialGroups as $materialGroup) {
+            $repository->addPosition($order, $materialGroup->material, $materialGroup->quantity);
         }
 
         return redirect(route('orders.edit', $order->id));

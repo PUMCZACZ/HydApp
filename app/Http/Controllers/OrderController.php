@@ -8,15 +8,15 @@ use App\Models\Material;
 use App\Models\MaterialGroup;
 use App\Models\MaterialToGroup;
 use App\Models\Order;
-use App\Models\OrderMaterialGroup;
+use App\Models\OrderPosition;
 
 class OrderController extends Controller
 {
-    private OrderGroupContoller $orderGroupContoller;
+    private OrderPositionsContoller $orderGroupContoller;
 
     public function __construct()
     {
-        $this->orderGroupContoller = new OrderGroupContoller();
+        $this->orderGroupContoller = new OrderPositionsContoller();
     }
 
     public function index(Order $order)
@@ -54,7 +54,7 @@ class OrderController extends Controller
             ->get();
 
         foreach ($materialGroup as $material) {
-            OrderMaterialGroup::create([
+            OrderPosition::create([
                 'order_id'          => $order[0]->id,
                 'material_id'       => $material->material_id,
                 'quantity'          => $material->quantity,
@@ -86,5 +86,4 @@ class OrderController extends Controller
     {
 
     }
-
 }
