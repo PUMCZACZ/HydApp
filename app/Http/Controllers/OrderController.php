@@ -5,7 +5,7 @@ use App\Http\Requests\OrderAddGroupRequest;
 use App\Http\Requests\OrderRequest;
 use App\Models\Client;
 use App\Models\Material;
-use App\Models\MaterialGroup;
+use App\Models\Group;
 use App\Models\MaterialToGroup;
 use App\Models\Order;
 use App\Models\OrderPosition;
@@ -24,7 +24,7 @@ class OrderController extends Controller
         return view('order.create', [
             'clients'        => Client::select(['id', 'name', 'lastname'])->get(),
             'materialGroups' => MaterialToGroup::with(['material', 'group'])->get(),
-            'groups'         => MaterialGroup::all(),
+            'groups'         => Group::all(),
         ]);
     }
 

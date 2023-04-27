@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('material-groups.index')" :active="request()->routeIs('material-groups.index')">
+                    <x-nav-link :href="route('groups.index')" :active="request()->routeIs('groups.index')">
                         {{ __('Grupy Materiałów') }}
                     </x-nav-link>
                 </div>

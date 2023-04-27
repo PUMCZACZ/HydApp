@@ -15,18 +15,18 @@
             <tr>
                 <th scope="col" class="px-6 py-3">Lp</th>
                 <th scope="col" class="px-6 py-3">Grupa Materiałów</th>
-                <th scope="col" class="px-6 py-3"> <a href="{{ route('material-groups.create') }}">Dodaj Grupę</a></th>
+                <th scope="col" class="px-6 py-3"> <a href="{{ route('groups.create') }}">Dodaj Grupę</a></th>
             </tr>
             </thead>
             <tbody>
-            @foreach($materialGroups as $materialGroup)
+            @foreach($groups as $group)
                 <tr class="bg-white border-b dark:bg-gray-800">
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
-                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"><a href="{{ route('material-groups.show', $materialGroup->id) }}">{{ $materialGroup->group_name }}</a></td>
-                    <td><a href="{{ route('material-groups.edit', $materialGroup->id) }}">Edytuj</a></td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"><a href="{{ route('groups.show', $group->id) }}">{{ $group->group_name }}</a></td>
+                    <td><a href="{{ route('groups.edit', $group->id) }}">Edytuj</a></td>
                     <td>
                         <form method="POST"
-                              action="{{ route('material-groups.destroy', $materialGroup->id) }}">
+                              action="{{ route('groups.destroy', $group->id) }}">
                             @csrf
                             @method('DELETE')
                             <button>Usuń</button>

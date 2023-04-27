@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class MaterialGroupRequest extends FormRequest
+class GroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,7 @@ class MaterialGroupRequest extends FormRequest
     {
         return [
             'group_name' => ['string', 'max:255', 'min:1', 'required'],
-        ];
-    }
-
-    public function toData(): array
-    {
-        return [
-            'group_name' => $this->input('group_name'),
+            'description' => ['string']
         ];
     }
 }

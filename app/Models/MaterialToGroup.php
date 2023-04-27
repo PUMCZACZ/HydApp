@@ -30,6 +30,6 @@ class MaterialToGroup extends Model
 
     public function group(): BelongsTo
     {
-        return $this->belongsTo(MaterialGroup::class, 'material_group_id', 'id');
+        return $this->belongsTo(Group::class, 'material_group_id', 'id');
     }
 }

@@ -16,7 +16,7 @@
     @csrf
     <div class="w-full max-w-xs">
         <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-              action="{{ route('clients.update', $materialGroup->id) }}"
+              action="{{ route('groups.update', $group->id) }}"
               method="POST">
             @csrf
             <div class="mb-4">
@@ -25,8 +25,19 @@
                 </label>
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="name" name="name" type="text" value="{{ old('group_name', $materialGroup->material_name) }}">
+                    id="group_name" name="group_name" type="text" value="{{ old('group_name', $group->group_name) }}">
             </div>
+
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-medium text-gray" for="description">
+                    Opis Grupy
+                </label>
+                <textarea id="description" name="description"
+                          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                >{{ old('description', $group->description) }}
+                </textarea>
+            </div>
+
             <div class="flex items-center justify-between">
                 <button>Zaktualizuj</button>
             </div>

@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Requests;
 
-use App\Models\MaterialGroup;
+use App\Models\Group;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,9 +40,9 @@ class MaterialRequest extends FormRequest
         return str_replace('/,/', '.', $this->input('purchase_price'));
     }
 
-    public function group(): ?MaterialGroup
+    public function group(): ?Group
     {
-        return MaterialGroup::find($this->input('group_id'));
+        return Group::find($this->input('group_id'));
     }
 
     public function toData(): array

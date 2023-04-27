@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MaterialController;
-use App\Http\Controllers\MaterialGroupController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrderPositionsContoller;
@@ -48,29 +48,29 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::delete('/{material}', [MaterialController::class, 'destroy'])->name('destroy');
         });
 
-    Route::prefix('/material-groups')
-        ->name('material-groups.')
+    Route::prefix('/groups')
+        ->name('groups.')
         ->group(function () {
-            Route::get('/', [MaterialGroupController::class, 'index'])->name('index');
-            Route::get('/create', [MaterialGroupController::class, 'create'])->name('create');
-            Route::post('/', [MaterialGroupController::class, 'store'])->name('store');
-            Route::get('/{material_group}/edit', [MaterialGroupController::class, 'edit'])->name('edit');
-            Route::post('/{material_group}', [MaterialGroupController::class, 'update'])->name('update');
-            Route::delete('/{material_group}', [MaterialGroupController::class, 'destroy'])->name('destroy');
-            Route::get('/{material_group}', [MaterialGroupController::class, 'show'])->name('show');
+            Route::get('/', [GroupController::class, 'index'])->name('index');
+            Route::get('/create', [GroupController::class, 'create'])->name('create');
+            Route::post('/', [GroupController::class, 'store'])->name('store');
+            Route::get('/{group}/edit', [GroupController::class, 'edit'])->name('edit');
+            Route::post('/{group}', [GroupController::class, 'update'])->name('update');
+            Route::delete('/{group}', [GroupController::class, 'destroy'])->name('destroy');
+            Route::get('/{group}', [GroupController::class, 'show'])->name('show');
 
             Route::prefix('/{material_group}/materials')
                 ->name('materials.')
                 ->group(function () {
-                    Route::get('/create', [MaterialGroupController::class, 'createMaterialToGroup'])
+                    Route::get('/create', [GroupController::class, 'createMaterialToGroup'])
                         ->name('create');
-                    Route::post('/', [MaterialGroupController::class, 'storeMaterialToGroup'])
+                    Route::post('/', [GroupController::class, 'storeMaterialToGroup'])
                         ->name('store');
-                    Route::get('/{material}/edit', [MaterialGroupController::class, 'editMaterialToGroup'])
+                    Route::get('/{material}/edit', [GroupController::class, 'editMaterialToGroup'])
                         ->name('edit'); // TODO: refactor
-                    Route::post('/{material}', [MaterialGroupController::class, 'updateMaterialToGroup'])
+                    Route::post('/{material}', [GroupController::class, 'updateMaterialToGroup'])
                         ->name('update'); // TODO: refactor
-                    Route::delete('/{material}', [MaterialGroupController::class, 'deleteMaterialToGroup'])
+                    Route::delete('/{material}', [GroupController::class, 'deleteMaterialToGroup'])
                         ->name('destroy'); // TODO: refactor
                 });
         });

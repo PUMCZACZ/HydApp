@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MaterialRequest;
 use App\Models\Material;
-use App\Models\MaterialGroup;
+use App\Models\Group;
 
 class MaterialController extends Controller
 {
@@ -16,7 +16,7 @@ class MaterialController extends Controller
 
     public function create()
     {
-        $groups = MaterialGroup::query()->orderBy('group_name', 'asc')->get();
+        $groups = Group::query()->orderBy('group_name', 'asc')->get();
 
         return view('material.create', [
             'groups' => $groups,

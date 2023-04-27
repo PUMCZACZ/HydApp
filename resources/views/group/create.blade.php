@@ -16,7 +16,7 @@
     @csrf
     <div class="w-full max-w-xs">
         <form method="POST"
-              action="{{ route('material-groups.store') }}"
+              action="{{ route('groups.store') }}"
               class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
             @csrf
@@ -27,6 +27,15 @@
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="group_name" name="group_name" type="text" value="{{ old('group_name') }}">
+            </div>
+
+            <div class="mb-4">
+                <label class="block mb-2 text-sm font-medium text-gray" for="description">
+                    Opis Grupy
+                </label>
+                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                          id="description" name="description">{{ old('description') }}
+                </textarea>
             </div>
 
             <div class="flex items-center justify-between">

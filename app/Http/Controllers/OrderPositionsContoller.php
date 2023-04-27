@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderAddGroupRequest;
-use App\Models\MaterialGroup;
+use App\Models\Group;
 use App\Models\MaterialToGroup;
 use App\Models\Order;
 use App\Models\OrderPosition;
@@ -15,7 +15,7 @@ class OrderPositionsContoller extends Controller
     {
         return view('order.addGroup', [
             'order'          => $order,
-            'materialGroups' => MaterialGroup::all(),
+            'materialGroups' => Group::all(),
         ]);
     }
 

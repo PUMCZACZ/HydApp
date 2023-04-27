@@ -14,11 +14,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property Carbon created_at
  * @property Carbon updated_at
  */
-class MaterialGroup extends Model
+class Group extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $table = 'material_groups';
 
     public function materials(): BelongsToMany
     {
