@@ -68,19 +68,7 @@ Route::middleware(['auth', 'web'])->group(function () {
                     Route::get('/{materialToGroup}/edit', [MaterialToGroupController::class, 'edit'])->name('edit');
                     Route::post('/{materialToGroup}', [MaterialToGroupController::class, 'update'])->name('update');
                     Route::delete('/{materialToGroup}', [MaterialToGroupController::class, 'destroy'])->name('destroy');
-
-                    Route::post('/{material}', [GroupController::class, 'updateMaterialToGroup'])
-                        ->name('update'); // TODO: refactor
-                    Route::delete('/{material}', [GroupController::class, 'deleteMaterialToGroup'])
-                        ->name('destroy'); // TODO: refactor
                 });
-        });
-
-    Route::prefix('/material_to_groups')
-        ->name('material_to_groups.')
-        ->group(function () {
-            Route::post('{materialToGroup}');
-            Route::get('{materialToGroup}/edit');
         });
 
     Route::prefix('/orders')
