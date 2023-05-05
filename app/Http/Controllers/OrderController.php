@@ -1,11 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OrderAddGroupRequest;
 use App\Http\Requests\OrderRequest;
 use App\Models\Client;
-use App\Models\Material;
 use App\Models\Group;
+use App\Models\Material;
 use App\Models\MaterialToGroup;
 use App\Models\Order;
 use App\Models\OrderPosition;
@@ -66,7 +65,7 @@ class OrderController extends Controller
 
     public function update(OrderRequest $request)
     {
-       var_dump($request->collect());
+        var_dump($request->collect());
     }
 
     public function destroy()

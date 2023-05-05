@@ -22,8 +22,8 @@ class GroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'group_name' => ['string', 'max:255', 'min:1', 'required'],
-            'description' => ['string']
+            'group_name'  => ['string', 'max:255', 'min:1', 'required'],
+            'description' => ['string'],
         ];
     }
 }

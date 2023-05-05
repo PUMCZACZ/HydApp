@@ -17,12 +17,12 @@ class MaterialFactory extends Factory
     public function definition(): array
     {
         return [
-            'material_name'          => fake()->sentence,
+            'material_name'           => fake()->sentence,
             'purchase_price'          => fake()->numberBetween(1, 50000),
-            'sale_price' => fake()->numberBetween(1, 900000),
-            'margin' => fake()->numberBetween(1, 5),
-            'unit_si' => UnitSiEnum::KILO,
-            'material_code' => fake()->currencyCode(),
+            'sale_price'              => fake()->numberBetween(1, 900000),
+            'margin'                  => fake()->numberBetween(1, 5),
+            'unit_si'                 => UnitSiEnum::KILO,
+            'material_code'           => fake()->currencyCode(),
         ];
     }
 }

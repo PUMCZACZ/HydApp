@@ -13,7 +13,6 @@ use PHPUnit\Metadata\Group;
  * @property int           quantity
  * @property Carbon        created_at
  * @property Carbon        updated_at
- *
  * @property-read Material $material
  * @property-read Group    $group
  */

@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\MaterialToGroupController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OrderPositionsContoller;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -57,17 +58,17 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::get('/{group}/edit', [GroupController::class, 'edit'])->name('edit');
             Route::post('/{group}', [GroupController::class, 'update'])->name('update');
             Route::delete('/{group}', [GroupController::class, 'destroy'])->name('destroy');
-            Route::get('/{group}', [GroupController::class, 'show'])->name('show');
 
-            Route::prefix('/{material_group}/materials')
+            Route::prefix('/{group}/materials')
                 ->name('materials.')
                 ->group(function () {
-                    Route::get('/create', [GroupController::class, 'createMaterialToGroup'])
-                        ->name('create');
-                    Route::post('/', [GroupController::class, 'storeMaterialToGroup'])
-                        ->name('store');
-                    Route::get('/{material}/edit', [GroupController::class, 'editMaterialToGroup'])
-                        ->name('edit'); // TODO: refactor
+                    Route::get('/', [MaterialToGroupController::class, 'index'])->name('index');
+                    Route::get('/create', [MaterialToGroupController::class, 'create'])->name('create');
+                    Route::post('/', [MaterialToGroupController::class, 'store'])->name('store');
+                    Route::get('/{materialToGroup}/edit', [MaterialToGroupController::class, 'edit'])->name('edit');
+                    Route::post('/{materialToGroup}', [MaterialToGroupController::class, 'update'])->name('update');
+                    Route::delete('/{materialToGroup}', [MaterialToGroupController::class, 'destroy'])->name('destroy');
+
                     Route::post('/{material}', [GroupController::class, 'updateMaterialToGroup'])
                         ->name('update'); // TODO: refactor
                     Route::delete('/{material}', [GroupController::class, 'deleteMaterialToGroup'])
@@ -77,7 +78,7 @@ Route::middleware(['auth', 'web'])->group(function () {
 
     Route::prefix('/material_to_groups')
         ->name('material_to_groups.')
-        ->group(function (){
+        ->group(function () {
             Route::post('{materialToGroup}');
             Route::get('{materialToGroup}/edit');
         });

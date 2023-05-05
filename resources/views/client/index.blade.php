@@ -17,6 +17,8 @@
                 <th scope="col" class="px-6 py-3">Imie</th>
                 <th scope="col" class="px-6 py-3">Nazwisko</th>
                 <th scope="col" class="px-6 py-3">Numer Telefonu</th>
+                <th scope="col" class="px-6 py-3">Email</th>
+                <th scope="col" class="px-6 py-3">Miejsowość</th>
                 <th scope="col" class="px-6 py-3"> <a href="{{ route('clients.create') }}">Dodaj Klienta</a></th>
             </tr>
             </thead>
@@ -27,6 +29,8 @@
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $client->name }}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $client->lastname }}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $client->phone_number }}</td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $client->email }}</td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $client->city }}</td>
                     <td><a href="{{ route('clients.edit', $client->id) }}">Edytuj</a></td>
                     <td>
                         <form method="POST"

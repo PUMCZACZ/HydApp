@@ -14,10 +14,9 @@ class OrderRepository
             ->where('material_id', $material->id)
             ->first();
 
-        if ($position !== null)
-        {
-//            $position->quantity += $quantity;
-//            $position->save();
+        if ($position !== null) {
+            //            $position->quantity += $quantity;
+            //            $position->save();
 
             $position->update(['quantity' => $position->quantity + $quantity]);
 
@@ -26,14 +25,14 @@ class OrderRepository
 
         return $order->positions()->create([
             'material_id' => $material->id,
-            'quantity' => $quantity,
-            'unit_price' => $material->sale_price,
+            'quantity'    => $quantity,
+            'unit_price'  => $material->sale_price,
         ]);
 
-//        return OrderPosition::create([
-//            'material_id' => $material->id,
-//            'quantity' => $quantity,
-//            'order_id' => $order->id,
-//        ]);
+        //        return OrderPosition::create([
+        //            'material_id' => $material->id,
+        //            'quantity' => $quantity,
+        //            'order_id' => $order->id,
+        //        ]);
     }
 }

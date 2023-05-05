@@ -10,6 +10,6 @@ class MaterialService
         $price = $material->purchase_price;
         $margin = $material->purchase_price * $material->margin;
 
-        return  $price + $margin;
+        return $price + $margin;
     }
 }

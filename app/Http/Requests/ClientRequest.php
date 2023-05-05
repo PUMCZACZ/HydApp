@@ -25,10 +25,10 @@ class ClientRequest extends FormRequest
             'name'         => ['string', 'required', 'max:255', 'min:1'],
             'lastname'     => ['string', 'required', 'max:255', 'min:1'],
             'phone_number' => ['string', 'required', 'max:255', 'min:1'],
-            'email' => ['email'],
-            'city' => ['string', 'min:1', 'max:50'],
-            'street' => ['string', 'min:1'],
-            'post_code' => ['string'],
+            'email'        => ['email'],
+            'city'         => ['string', 'min:1', 'max:50'],
+            'street'       => ['string', 'min:1'],
+            'post_code'    => ['string'],
         ];
     }
 }

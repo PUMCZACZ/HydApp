@@ -14,17 +14,9 @@ class MaterialToGroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'quantity'    => ['numeric', 'required'],
-        ];
-    }
-
-    public function toData(): array
-    {
-        return [
-            'quantity'          => $this->input('quantity'),
-            'material_id'       => $this->input('material_id'),
-            'material_group_id' => $this->input('material_group_id'),
-            'id'                => $this->input('id'),
+            'quantity'          => ['numeric', 'required'],
+            'material_id'       => ['required', 'integer', 'exists:materials,id'],
+            'material_group_id' => ['required', 'integer', 'exists:material_groups,id'],
         ];
     }
 }

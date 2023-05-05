@@ -22,7 +22,7 @@
             @foreach($groups as $group)
                 <tr class="bg-white border-b dark:bg-gray-800">
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
-                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"><a href="{{ route('groups.show', $group->id) }}">{{ $group->group_name }}</a></td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"><a href="{{ route('groups.materials.index', $group->id) }}">{{ $group->group_name }}</a></td>
                     <td><a href="{{ route('groups.edit', $group->id) }}">Edytuj</a></td>
                     <td>
                         <form method="POST"

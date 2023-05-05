@@ -9,7 +9,7 @@
           href="https://horizon-tailwind-react-git-tailwind-components-horizon-ui.vercel.app/static/css/main.ad49aa9b.css"/>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"/>
-    <title>Klient | Edycja</title>
+    <title>Grupa | Edycja</title>
 </head>
 <body>
 <x-app-layout>
