@@ -40,7 +40,7 @@ class OrderController extends Controller
             'order'  => $order,
             'orders' => Order::query()
                 ->where('id', $order->id)
-                ->with(['client', 'positions', 'materials'])
+                ->with(['client', 'positions'])
                 ->get(),
             'materials' => Material::all(),
         ]);
