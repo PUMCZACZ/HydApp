@@ -26,13 +26,14 @@ class MaterialRequest extends FormRequest
             'material_name'  => ['required', 'string', 'max:255', 'min:1'],
             'purchase_price' => ['required', 'numeric', 'min:0.01'],
             'margin'         => ['required', 'numeric', 'min:0.01'],
+            'material_code' => ['required', 'string', 'min:1'],
             'unit_si'        => ['required'],
         ];
     }
 
     private function refactorMargin(): float
     {
-        return str_replace('/,/', '.', $this->input('purchase_price')) / 100;
+        return str_replace('/,/', '.', $this->input('margin')) / 100;
     }
 
     private function refactorPrice(): float
@@ -52,6 +53,7 @@ class MaterialRequest extends FormRequest
             'purchase_price' => $this->refactorPrice(),
             'margin'         => $this->refactorMargin(),
             'unit_si'        => $this->input('unit_si'),
+            'material_code'        => $this->input('material_code'),
         ];
     }
 }

@@ -86,6 +86,7 @@ Route::middleware(['auth', 'web'])->group(function () {
                 ->group(function () {
                     Route::get('/create', [OrderPositionsContoller::class, 'create'])->name('create');
                     Route::post('/', [OrderPositionsContoller::class, 'store'])->name('store');
+                    Route::get('/{orderPosition}', [OrderPositionsContoller::class, 'edit'])->name('edit');
                 });
         });
 });

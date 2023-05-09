@@ -15,8 +15,6 @@ class OrderRepository
             ->first();
 
         if ($position !== null) {
-            //            $position->quantity += $quantity;
-            //            $position->save();
 
             $position->update(['quantity' => $position->quantity + $quantity]);
 
@@ -28,11 +26,10 @@ class OrderRepository
             'quantity'    => $quantity,
             'unit_price'  => $material->sale_price,
         ]);
+    }
 
-        //        return OrderPosition::create([
-        //            'material_id' => $material->id,
-        //            'quantity' => $quantity,
-        //            'order_id' => $order->id,
-        //        ]);
+    public function fetchPositions(OrderPosition $orderPosition)
+    {
+
     }
 }

@@ -16,7 +16,7 @@
     @csrf
     <div class="w-full max-w-xs">
         <form method="POST"
-              action="{{ route('orders.update', $order->id)}}"
+{{--              action="{{ route('orders.update', $order->id)}}"--}}
               class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
             @csrf
@@ -54,7 +54,6 @@
                             @foreach($order->positions as $group)
                                 <tr class="bg-white border-b dark:bg-gray-800">
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-
                                         @foreach($materials as $material)
                                             @if($group->material_id === $material->id)
                                                 {{ $material->material_name }}
@@ -69,7 +68,7 @@
                                         @endforeach
                                     </td>
                                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Pompa Ciepła</td>
-                                    <td>Edytuj</td>
+{{--                                    <td><a href="{{ route('orders.group.edit'), $group->material_id }}">Edytuj</a></td>--}}
                                     <td>Usuń</td>
                                 </tr>
                             @endforeach
@@ -81,6 +80,7 @@
                 <button>Zaktualizuj Dane Zamówienia</button>
             </div>
         </form>
+        @dd($order)
     </div>
 </x-app-layout>
 </body>

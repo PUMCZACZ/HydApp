@@ -19,7 +19,6 @@
               action="{{ route('orders.store') }}"
               class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
-            @csrf
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                     Klient
@@ -29,15 +28,6 @@
                         id="client_id">
                     @foreach($clients as $client)
                         <option value="{{ $client->id }}"> {{ $client->name . '  ' . $client->lastname }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="material_group_id">Grupa Materiałów</label>
-                <select name="material_group_id"
-                        id="material_group_id">
-                    @foreach($groups as $group)
-                        <option value="{{ $group->id }}">{{ $group->group_name }}</option>
                     @endforeach
                 </select>
             </div>

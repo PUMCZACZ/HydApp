@@ -80,12 +80,9 @@
                     Jednostka
                 </label>
 
-                <select name="unit_si"
-                        id="unit_si"
-                        class="mb-4"
-                >
+                <select name="unit_si" class="mb-4">
                     @foreach(\App\Enums\UnitSiEnum::cases() as $unit)
-                        <option value="{{ $unit->value }}">{{ $unit->translate() }}</option>
+                        <option value="{{ $unit->value }}" {{ $material->unit_si === $unit ? 'selected' : ''}}>{{ $unit->translate() }}</option>
                     @endforeach
                 </select>
                 <div>

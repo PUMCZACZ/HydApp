@@ -19,7 +19,6 @@ class OrderRequest extends FormRequest
         return [
             'client_id'         => ['required'],
             'order_name'        => ['required', 'string', 'min:1'],
-            'material_group_id' => ['required'],
         ];
     }
 }

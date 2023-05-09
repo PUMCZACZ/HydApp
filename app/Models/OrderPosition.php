@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int material_group_id
  * @property int material_id
  * @property int quantity
+ * @property float unit_price
  * @property Carbon created_at
  * @property Carbon updated_at
  */

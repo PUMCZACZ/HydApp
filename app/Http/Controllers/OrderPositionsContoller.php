@@ -5,6 +5,7 @@ use App\Http\Requests\OrderAddGroupRequest;
 use App\Models\Group;
 use App\Models\MaterialToGroup;
 use App\Models\Order;
+use App\Models\OrderPosition;
 use App\Repositories\OrderRepository;
 
 class OrderPositionsContoller extends Controller
@@ -24,10 +25,19 @@ class OrderPositionsContoller extends Controller
             ->get();
 
         /** @var MaterialToGroup $materialGroup */
-        foreach ($materialGroups as $materialGroup) {
+        foreach ($materialGroups as $materialGroup)
+        {
             $repository->addPosition($order, $materialGroup->material, $materialGroup->quantity);
         }
 
         return redirect(route('orders.edit', $order->id));
+    }
+
+    public function edit(Order $order, OrderPosition $orderPosition)
+    {
+        return view('orders.group.edit',[
+            'order' => $order,
+            'orderPosition' => $orderPosition,
+        ]);
     }
 }
