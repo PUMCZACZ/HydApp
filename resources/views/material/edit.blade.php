@@ -77,7 +77,7 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="purchase_price">
-                    Jednostka
+                    Jednostkaa
                 </label>
 
                 <select name="unit_si" class="mb-4">
