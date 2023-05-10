@@ -5,7 +5,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MaterialToGroupController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderPositionsContoller;
+use App\Http\Controllers\OrderPositionContoller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -84,9 +84,11 @@ Route::middleware(['auth', 'web'])->group(function () {
             Route::prefix('/{order}/group')
                 ->name('groups.')
                 ->group(function () {
-                    Route::get('/create', [OrderPositionsContoller::class, 'create'])->name('create');
-                    Route::post('/', [OrderPositionsContoller::class, 'store'])->name('store');
-                    Route::get('/{orderPosition}', [OrderPositionsContoller::class, 'edit'])->name('edit');
+                    Route::get('/create', [OrderPositionContoller::class, 'create'])->name('create');
+                    Route::post('/', [OrderPositionContoller::class, 'store'])->name('store');
+                    Route::get('/{orderPosition}/edit', [OrderPositionContoller::class, 'edit'])->name('edit');
+                    Route::post('/{orderPosition}', [OrderPositionContoller::class, 'update'])->name('update');
+                    Route::delete('/{orderPosition}', [OrderPositionContoller::class, 'destroy'])->name('destroy');
                 });
         });
 });

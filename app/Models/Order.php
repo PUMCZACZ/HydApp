@@ -32,9 +32,4 @@ class Order extends Model
     {
         return $this->belongsTo(MaterialToGroup::class, 'material_group_id');
     }
-
-    public function materials(): HasManyThrough
-    {
-        return $this->hasManyThrough(Material::class, OrderPosition::class);
-    }
 }

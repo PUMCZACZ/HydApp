@@ -2,17 +2,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderAddGroupRequest;
+use App\Http\Requests\OrderPositionRequest;
 use App\Models\Group;
+use App\Models\Material;
 use App\Models\MaterialToGroup;
 use App\Models\Order;
 use App\Models\OrderPosition;
 use App\Repositories\OrderRepository;
 
-class OrderPositionsContoller extends Controller
+class OrderPositionContoller extends Controller
 {
     public function create(Order $order)
     {
-        return view('order.addGroup', [
+        return view('order-group.create', [
             'order'          => $order,
             'materialGroups' => Group::all(),
         ]);
@@ -33,11 +35,26 @@ class OrderPositionsContoller extends Controller
         return redirect(route('orders.edit', $order->id));
     }
 
-    public function edit(Order $order, OrderPosition $orderPosition)
+    public function edit(Order $order, OrderPosition $orderPosition, OrderRepository $repository)
     {
-        return view('orders.group.edit',[
+        return view('order-group.edit',[
             'order' => $order,
-            'orderPosition' => $orderPosition,
+            'position' => $orderPosition,
+            'material' => $repository->fetchMaterialInfo($orderPosition),
         ]);
+    }
+
+    public function update(Order $order, OrderPosition $orderPosition, OrderPositionRequest $request)
+    {
+        $orderPosition->update($request->validated());
+
+        return redirect(route('orders.edit', $order->id));
+    }
+
+    public function destroy(Order $order, OrderPosition $orderPosition)
+    {
+        $orderPosition->delete();
+
+        return redirect(route('orders.edit', $order->id));
     }
 }

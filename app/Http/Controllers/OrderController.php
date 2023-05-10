@@ -8,6 +8,7 @@ use App\Models\Material;
 use App\Models\MaterialToGroup;
 use App\Models\Order;
 use App\Models\OrderPosition;
+use App\Repositories\OrderRepository;
 
 class OrderController extends Controller
 {
@@ -34,15 +35,13 @@ class OrderController extends Controller
         return redirect(route('order.index'));
     }
 
-    public function edit(Order $order)
+    public function edit(Order $order, OrderRepository $repository)
     {
         return view('order.edit', [
             'order'  => $order,
-            'orders' => Order::query()
-                ->where('id', $order->id)
-                ->with(['client', 'positions'])
-                ->get(),
+            'positions' => $repository->fetchPositions($order),
             'materials' => Material::all(),
+            'clients' => Client::all(),
         ]);
     }
 
