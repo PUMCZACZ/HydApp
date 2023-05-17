@@ -4,6 +4,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Znck\Eloquent\Relations\BelongsToThrough;
 
 /**
  * @property int           id
@@ -17,6 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class MaterialToGroup extends Model
 {
+    use \Znck\Eloquent\Traits\BelongsToThrough;
+
     protected $guarded = [];
 
     protected $table = 'material_material_group';
@@ -28,6 +31,11 @@ class MaterialToGroup extends Model
 
     public function group(): BelongsTo
     {
-        return $this->belongsTo(Group::class, 'material_group_id', 'id');
+        return $this->belongsTo(Group::class);
+    }
+
+    public function unitSi(): BelongsToThrough
+    {
+        return $this->belongsToThrough(UnitSi::class, Material::class);
     }
 }

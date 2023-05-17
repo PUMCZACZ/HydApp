@@ -7,7 +7,6 @@ use App\Models\Group;
 use App\Models\Material;
 use App\Models\MaterialToGroup;
 use App\Models\Order;
-use App\Models\OrderPosition;
 use App\Repositories\OrderRepository;
 
 class OrderController extends Controller
@@ -32,7 +31,7 @@ class OrderController extends Controller
     {
         Order::create($request->validated());
 
-        return redirect(route('order.index'));
+        return redirect(route('orders.index'));
     }
 
     public function edit(Order $order, OrderRepository $repository)
@@ -40,18 +39,21 @@ class OrderController extends Controller
         return view('order.edit', [
             'order'  => $order,
             'positions' => $repository->fetchPositions($order),
-            'materials' => Material::all(),
             'clients' => Client::all(),
         ]);
     }
 
-    public function update(OrderRequest $request)
+    public function update(Order $order, OrderRequest $request)
     {
-        var_dump($request->collect());
+        $order->update($request->validated());
+
+        return redirect(route('orders.index', $order->id));
     }
 
-    public function destroy()
+    public function destroy(Order $order)
     {
+        $order->delete();
 
+        return redirect(route('orders.index'));
     }
 }

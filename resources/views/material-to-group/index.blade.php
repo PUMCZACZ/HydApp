@@ -27,7 +27,7 @@
                 <tr class="bg-white border-b dark:bg-gray-800">
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
                     <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $material->material->material_name }}</td>
-                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $material->quantity }} szt</td>
+                    <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $material->quantity . $material->unitSi->unit_si_short_name}} </td>
                     <td><a href="{{ route('groups.materials.edit', [$group->id, $material->id]) }}">Edytuj</a></td>
                     <td>
                         <form method="POST"
@@ -42,7 +42,6 @@
             </tbody>
         </table>
     </div>
-{{--    @dd($material)--}}
 </x-app-layout>
 </body>
 </html>

@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class OrderRequest extends FormRequest
+class WorkRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,12 +15,16 @@ class OrderRequest extends FormRequest
         return Auth::check();
     }
 
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     */
     public function rules(): array
     {
         return [
-            'client_id'         => ['required', 'integer'],
-            'order_name'        => ['required', 'string', 'min:1'],
+            'service_name' => ['required', 'string', 'min:1', 'max:255'],
+            'work_scope' => ['required', 'string', 'min:1', 'max:255'],
         ];
     }
-
 }

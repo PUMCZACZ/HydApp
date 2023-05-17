@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrderAddGroupRequest;
 use App\Http\Requests\OrderPositionRequest;
 use App\Models\Group;
-use App\Models\Material;
 use App\Models\MaterialToGroup;
 use App\Models\Order;
 use App\Models\OrderPosition;

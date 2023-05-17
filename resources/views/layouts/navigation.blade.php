@@ -40,6 +40,11 @@
                         {{ __('Zamówienia') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('works.index')" :active="request()->routeIs('works.index')">
+                        {{ __('Prace') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

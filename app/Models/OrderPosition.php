@@ -5,11 +5,12 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Znck\Eloquent\Relations\BelongsToThrough;
 
 /**
  * @property int id
  * @property int order_id
- * @property int material_group_id
  * @property int material_id
  * @property int quantity
  * @property float unit_price
@@ -18,6 +19,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class OrderPosition extends Model
 {
+    use \Znck\Eloquent\Traits\BelongsToThrough;
+
     protected $guarded = [];
 
     protected $table = 'material_material_group_order';
@@ -27,13 +30,13 @@ class OrderPosition extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function group(): HasOne
+    public function material(): BelongsTo
     {
-        return $this->hasOne(MaterialToGroup::class, 'material_group_id');
+        return $this->belongsTo(Material::class);
     }
 
-    public function material(): HasOne
+    public function unitSi(): BelongsToThrough
     {
-        return $this->hasOne(MaterialToGroup::class, 'material_id');
+        return $this->belongsToThrough(UnitSi::class, Material::class);
     }
 }

@@ -7,6 +7,8 @@ use App\Http\Controllers\MaterialToGroupController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderPositionContoller;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UnitSiController;
+use App\Http\Controllers\WorkController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -90,6 +92,29 @@ Route::middleware(['auth', 'web'])->group(function () {
                     Route::post('/{orderPosition}', [OrderPositionContoller::class, 'update'])->name('update');
                     Route::delete('/{orderPosition}', [OrderPositionContoller::class, 'destroy'])->name('destroy');
                 });
+        });
+
+    Route::prefix('/works')
+        ->name('works.')
+        ->group(function () {
+            Route::get('/',[WorkController::class, 'index'])->name('index');
+            Route::get('/create',[WorkController::class, 'create'])->name('create');
+            Route::post('/',[WorkController::class, 'store'])->name('store');
+            Route::get('/{work}',[WorkController::class, 'edit'])->name('edit');
+            Route::post('/{work}',[WorkController::class, 'update'])->name('update');
+            Route::delete('/{work}',[WorkController::class, 'destroy'])->name('destroy');
+        });
+
+    Route::prefix('/unit-sis')
+        ->name('unit-sis.')
+        ->group(function () {
+            Route::get('/', [UnitSiController::class, 'index'])->name('index');
+            Route::get('/create', [UnitSiController::class, 'create'])->name('create');
+            Route::post('/', [UnitSiController::class, 'store'])->name('store');
+            Route::get('/{unit_si}', [UnitSiController::class, 'edit'])->name('edit');
+            Route::post('/{unit_si}', [UnitSiController::class, 'update'])->name('update');
+            Route::delete('/{unit_si}', [UnitSiController::class, 'destroy'])->name('destroy');
+
         });
 });
 require __DIR__ . '/auth.php';

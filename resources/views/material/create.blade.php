@@ -74,7 +74,6 @@
                     @enderror
                 </div>
             </div>
-
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="purchase_price">
                     Kod Materiału
@@ -88,27 +87,26 @@
                     @enderror
                 </div>
             </div>
-
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="purchase_price">
                     Jednostka
                 </label>
 
-                <select name="unit_si"
-                        id="unit_si"
+                <select name="unit_si_id"
                         class="mb-4"
                 >
-                @foreach(\App\Enums\UnitSiEnum::cases() as $unit)
-                    <option value="{{ $unit->value }}">{{ $unit->translate() }}</option>
+                @foreach($units as $unit)
+                    <option value="{{ $unit->id }}">
+                        {{ $unit->unit_si_name }}
+                    </option>
                 @endforeach
                 </select>
                 <div>
-                    @error('unit_si')
+                    @error('unit_si_id')
                     <p class="text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>
             </div>
-
             <div class="flex items-center justify-between mt-2">
                 <button>Utwórz</button>
             </div>

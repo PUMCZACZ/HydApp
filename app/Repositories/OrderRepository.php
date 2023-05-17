@@ -31,9 +31,9 @@ class OrderRepository
 
     public function fetchPositions(Order $order): array|Collection
     {
-        return Order::query()
-            ->where('id', $order->id)
-            ->with(['client', 'positions'])
+        return OrderPosition::query()
+            ->where('order_id', $order->id)
+            ->with(['material', 'unitSi'])
             ->get();
     }
 

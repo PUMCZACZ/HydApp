@@ -11,7 +11,7 @@ class MaterialsInGroupsRepository
     {
         return MaterialToGroup::query()
             ->where('material_group_id', $group->id)
-            ->with('material')
+            ->with(['material', 'unitSi'])
             ->get();
     }
 

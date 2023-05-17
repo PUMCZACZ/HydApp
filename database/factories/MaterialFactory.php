@@ -2,6 +2,7 @@
 namespace Database\Factories;
 
 use App\Enums\UnitSiEnum;
+use App\Models\UnitSi;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,10 +19,10 @@ class MaterialFactory extends Factory
     {
         return [
             'material_name'           => fake()->sentence,
-            'purchase_price'          => fake()->numberBetween(1, 50000),
-            'sale_price'              => fake()->numberBetween(1, 900000),
+            'purchase_price'          => fake()->numberBetween(1, 5000),
+            'sale_price'              => fake()->numberBetween(1, 8000),
             'margin'                  => fake()->numberBetween(1, 5),
-            'unit_si'                 => UnitSiEnum::KILO,
+            'unit_si'                 => $this->for(UnitSi::factory()),
             'material_code'           => fake()->currencyCode(),
         ];
     }

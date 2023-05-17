@@ -16,7 +16,7 @@
     @csrf
     <div class="w-full max-w-xs">
         <form method="POST"
-              {{--              action="{{ route('orders.update', $order->id)}}"--}}
+              action="{{ route('orders.update', $order->id)}}"
               class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
             @csrf
@@ -24,8 +24,12 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="client_name ">
                     Klient
                 </label>
-                <select>
-                    <option value="{{ $order->client->id }}">{{ $order->client->name . " " . $order->client->lastname }}</option>
+                <select name="client_id">
+                @foreach($clients as $client)
+                        <option value="{{ $client->id }}" {{ $order->client->id  === $client->id ? 'selected' : '' }}>
+                            {{ $client->name . " " . $client->lastname }}
+                        </option>
+                @endforeach
                 </select>
             </div>
 
@@ -33,7 +37,7 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="material_group_id">Nazwa
                     Zamówienia
                 </label>
-                <input name="order_name" id="order_name" type="text"
+                <input name="order_name" type="text"
                        value="{{ old('order_name', $order->order_name) }}">
             </div>
             <div class="flex items-center mt-4">
@@ -49,46 +53,34 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 mt-4">
                 <tr>
                     <th class="px-6 py-3">Nazwa Materiału</th>
+                    <th class="px-6 py-3">Kod Materiału</th>
                     <th class="px-6 py-3">Ilość Materiału</th>
-                    <th class="px-6 py-3">Grupa Materiałowa</th>
+                    <th class="px-6 py-3">Cena za sztukę</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($positions as $position)
-                    @foreach($position->positions as $group)
-                        <tr class="bg-white border-b dark:bg-gray-800">
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                @foreach($materials as $material)
-                                    @if($group->material_id === $material->id)
-                                        {{ $material->material_name }}
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                @foreach($materials as $material)
-                                    @if($group->material_id === $material->id)
-                                        {{ $group->quantity . " " . $material->unit_si->translate()}}
-                                    @endif
-                                @endforeach
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Pompa Ciepła</td>
-                            <td><a href="{{ route('orders.groups.edit', [$order->id, $group->id]) }}">Edytuj</a></td>
+                    <tr class="bg-white border-b dark:bg-gray-800">
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $position->material->material_name }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $position->material->material_code}}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $position->quantity . $position->unitSi->unit_si_short_name }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{{ $position->unit_price }} zł</td>
+                            <td><a href="{{ route('orders.groups.edit', [$order->id, $position->id]) }}">Edytuj</a></td>
                             <td>
                                 <form method="POST"
-                                      action="{{ route('orders.groups.destroy', [$order->id, $group->id]) }}">
+                                      action="{{ route('orders.groups.destroy', [$order->id, $position->id]) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit">Usuń</button>
                                 </form>
                             </td>
-                        </tr>
-                    @endforeach
+                    </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    @dd($material)
+{{--    @dd([$order, $positions])--}}
 </x-app-layout>
 </body>
 </html>

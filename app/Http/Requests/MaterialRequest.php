@@ -27,7 +27,7 @@ class MaterialRequest extends FormRequest
             'purchase_price' => ['required', 'numeric', 'min:0.01'],
             'margin'         => ['required', 'numeric', 'min:0.01'],
             'material_code' => ['required', 'string', 'min:1'],
-            'unit_si'        => ['required'],
+            'unit_si_id'        => ['required', 'integer', 'exists:unit_sis,id'],
         ];
     }
 
@@ -52,8 +52,8 @@ class MaterialRequest extends FormRequest
             'material_name'  => $this->input('material_name'),
             'purchase_price' => $this->refactorPrice(),
             'margin'         => $this->refactorMargin(),
-            'unit_si'        => $this->input('unit_si'),
-            'material_code'        => $this->input('material_code'),
+            'unit_si_id'        => $this->input('unit_si_id'),
+            'material_code'  => $this->input('material_code'),
         ];
     }
 }

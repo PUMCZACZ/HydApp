@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MaterialRequest;
 use App\Models\Group;
 use App\Models\Material;
+use App\Models\UnitSi;
 
 class MaterialController extends Controller
 {
@@ -20,6 +21,7 @@ class MaterialController extends Controller
 
         return view('material.create', [
             'groups' => $groups,
+            'units' => UnitSi::all()
         ]);
     }
 
@@ -41,6 +43,7 @@ class MaterialController extends Controller
     {
         return view('material.edit', [
             'material' => $material,
+            'units' => UnitSi::all(),
         ]);
     }
 
